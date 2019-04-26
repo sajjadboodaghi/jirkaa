@@ -1,0 +1,97 @@
+CREATE TABLE `xj_links` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `title` VARCHAR(300) NOT NULL ,
+    `url` VARCHAR(500) NOT NULL ,
+    `user_id` INT(11) NOT NULL ,
+    `hotcount` INT(11) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_dailies` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `type` VARCHAR(8) NOT NULL ,
+    `title` VARCHAR(300) NOT NULL ,
+    `url` VARCHAR(500) NOT NULL ,
+    `user_id` INT(11) NOT NULL ,
+    `column` INT(11) NOT NULL ,
+    `cat_id` INT(11) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_users` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `username` VARCHAR(24) NOT NULL UNIQUE,
+    `email` VARCHAR(200) NOT NULL ,
+    `image` VARCHAR(20) NOT NULL DEFAULT "default.jpg",
+    `about` INT(11) ,
+    `password` VARCHAR(120) NOT NULL ,
+    `remember_token` INT(32) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_hots` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `user_id` INT(11) NOT NULL,
+    `link_id` INT(11) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_bookmarks` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `user_id` INT(11) NOT NULL,
+    `link_id` INT(11) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_friends` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `user_id` INT(11) NOT NULL,
+    `friend_id` INT(11) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `xj_tags` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `title` VARCHAR(40) NOT NULL ,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+CREATE TABLE `xj_link_tag` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `link_id` INT(11) NOT NULL,
+    `tag_id` INT(11) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+CREATE TABLE `xj_notifications` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT ,
+    `owner_id` INT(11) NOT NULL,
+    `link_id` INT(11) NOT NULL,
+    `user_id` INT(11) NOT NULL,
+    `type` VARCHAR(6) NOT NULL,
+    `seen` TINYINT(1) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET=utf8 COLLATE utf8_general_ci;
+
+
+
